@@ -1,4 +1,5 @@
 pyTelegramBotAPI
 flask
-gunicorn
-telepot
+telebot
+os
+logging
