@@ -1,37 +1,31 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-import telepot
-from telepot.loop import MessageLoop
-TOKEN = '680764124:AAGwTa4a6e0zx_tJcYdrr5njiCIkTVKFeiY'
-bot = telepot.Bot(TOKEN)
+import telebot
+import os
+from flask import Flask, request
+import logging
 
-def handle(msg):
-    content_type, chat_type, chat_id = telepot.glance(msg)
-    text = msg["text"]
-    try:
-        answer = eval(text)
-        bot.sendMessage(chat_id, "answer: {}".format(answer))
-    except:
-        if text == '/start':
-            bot.sendMessage(chat_id, "Hello, {}!".format(msg["from"].get("first_name").encode('utf-8')))
-        elif text == '/help':
-            bot.sendMessage(chat_id, u'Бот в процессе разработки.'.encode('utf-8'))
-        else:
-            bot.sendMessage(chat_id, text)
+token = "680764124:AAGwTa4a6e0zx_tJcYdrr5njiCIkTVKFeiY"
 
-def UpdatesInfo():
-    import telepot
-    from pprint import pprint
-    bot = telepot.Bot('680764124:AAGwTa4a6e0zx_tJcYdrr5njiCIkTVKFeiY')
-    response = bot.getUpdates()
-    pprint(response)
+bot = telebot.TeleBot(token)
 
-UpdatesInfo()
-MessageLoop(bot, handle).run_as_thread()
+@bot.message_handler(func=lambda message: True, content_types=['text'])
+def echo_message(message):
+    bot.reply_to(message, message.text)
 
-# Keep the program running.
-while True:
-    if False: break
-#     n = input('To stop enter "stop":')
-#     if n.strip() == 'stop':
-#         break
+if "HEROKU" in list(os.environ.keys()):
+    logger = telebot.logger
+    telebot.logger.setLevel(logging.INFO)
+
+    server = Flask(__name__)
+    @server.route("/bot", methods=['POST'])
+    def getMessage():
+        bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+        return "!", 200
+    @server.route("/")
+    def webhook():
+        bot.remove_webhook()
+        bot.set_webhook(url="https://tgb-ot.herokuapp.com/bot")
+        return "?", 200
+    server.run(host="0.0.0.0", port=os.environ.get('PORT', 80))
+else:
+    bot.remove_webhook()
+    bot.polling(none_stop=True)
