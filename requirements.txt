@@ -1,4 +1,2 @@
 pyTelegramBotAPI
-flask
-telebot
-logging
+cherrypy
