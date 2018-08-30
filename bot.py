@@ -1,5 +1,5 @@
-import telebot
 import os
+import telebot
 from flask import Flask, request
 import logging
 
@@ -9,6 +9,7 @@ bot = telebot.TeleBot(token)
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
     bot.reply_to(message, message.text)
+
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
