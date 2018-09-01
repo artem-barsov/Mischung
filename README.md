@@ -1,32 +1,53 @@
 # Mischung
 Telegram bot for testing anything
 
-____________________________________
-Setting up Git for GitHub:
+----------------------------------------------------------------------
+### Setting up Git for GitHub:
 ```
 ssh-keygen -t rsa -b 4096 -C "your_mail@example.com"
 ssh-add ~/.ssh/your_key_name
-https://github.com/settings/keys
+```
+<https://github.com/settings/keys>
+```
 git init
 git remote add Mischung git@github.com:Artyom-Barsov/Mischung.git
 ```
-____________________________________
-To Heroku:
+----------------------------------------------------------------------
+### Setting up for Heroku:
+- Instal heroku
+- Login on Heroku
+- In Pipfile version:
 ```
-git add .
-git commit -am "commit on Heroku"
-git push heroku master
+[requires]
+python_version = "3.5"
 ```
-____________________________________
-To GitHub:
+- Create Pipfile.lock:
+```
+pipenv lock
+```
+- In Procfile how to run:
+```
+web: python3 bot.py
+```
+- In requirements.txt libraries
+```
+heroku login
+heroku git:remote -a app_name
+heroku buildpacks:set heroku/python
+heroku ps:scale web=1
+heroku open
+```
+----------------------------------------------------------------------
+### To GitHub:
 ```
 git add .
 git commit -am "commit on GitHub"
 git push Mischung master
 ```
-____________________________________
-Start on Heroku:
+----------------------------------------------------------------------
+### To Heroku:
 ```
-codeheroku ps:scale web=1
-heroku open
+git add .
+git commit -am "commit on Heroku"
+git push heroku master
 ```
