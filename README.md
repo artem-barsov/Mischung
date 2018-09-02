@@ -29,7 +29,7 @@ pipenv lock
 ```
 web: python3 bot.py
 ```
-- In requirements.txt libraries
+- In requirements.txt libraries:
 ```
 heroku login
 heroku git:remote -a app_name
