@@ -10,7 +10,6 @@ bot = telebot.TeleBot(token)
 def echo_message(message):
     bot.reply_to(message, message.text)
 
-
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
     telebot.logger.setLevel(logging.INFO)
