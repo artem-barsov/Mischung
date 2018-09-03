@@ -11,6 +11,7 @@ ssh-add ~/.ssh/your_key_name
 ```
 git init
 git remote add Mischung git@github.com:Artyom-Barsov/Mischung.git
+git pull
 ```
 ----------------------------------------------------------------------
 ### Setting up for Heroku:
