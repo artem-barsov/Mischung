@@ -44,6 +44,7 @@ git add .
 git commit -am "commit on GitHub"
 git push Mischung master
 ```
+Automatic deploys to Heroku can be set up
 ----------------------------------------------------------------------
 ### To Heroku:
 ```
