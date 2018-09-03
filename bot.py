@@ -24,7 +24,7 @@ if "HEROKU" in list(os.environ.keys()):
         bot.remove_webhook()
         bot.set_webhook(url="https://tgb-ot.herokuapp.com/bot")
         return "?", 200
-    server.run(host="0.0.0.0", port=os.environ.get('PORT', 80))
+    server.run(host="0.0.0.0", port=os.environ.get('PORT', 443))
 else:
     bot.remove_webhook()
     bot.polling(none_stop=True)
