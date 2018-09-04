@@ -30,12 +30,14 @@ pipenv lock
 ```
 web: python3 bot.py
 ```
-- In requirements.txt libraries:
+- In requirements.txt libraries.
+
 ```
 heroku login
 heroku git:remote -a app_name
 heroku buildpacks:set heroku/python
 heroku ps:scale web=1
+heroku maintenance:off
 heroku open
 ```
 ----------------------------------------------------------------------
@@ -46,6 +48,7 @@ git commit -am "commit on GitHub"
 git push Mischung master
 ```
 Automatic deploys to Heroku can be set up
+
 ----------------------------------------------------------------------
 ### To Heroku:
 ```
