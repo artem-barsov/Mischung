@@ -30,7 +30,7 @@ pipenv lock
 ```
 web: python3 bot.py
 ```
-- In requirements.txt libraries.
+- In requirements.txt are libraries.
 
 ```
 heroku login
