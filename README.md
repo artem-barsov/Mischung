@@ -1,13 +1,11 @@
 # Mischung
 Telegram bot for testing anything
 
-```
-./[request.sh](https://github.com/Artyom-Barsov/Mischung/blob/master/request.sh) [method](https://core.telegram.org/bots/api#available-methods)
-```
+./[``` request.sh ```](https://github.com/Artyom-Barsov/Mischung/blob/master/request.sh) [*method*](https://core.telegram.org/bots/api#available-methods)
+
 or
-```
-curl "https://api.telegram.org/bot688343184:AAGnRwbHccoACNsrWr3N75_wnSesvp4t5dA/
-```
+``` curl "https://api.telegram.org/bot688343184:AAGnRwbHccoACNsrWr3N75_wnSesvp4t5dA/ ``` [*method*](https://core.telegram.org/bots/api#available-methods) ```| python -m json.tool```
+
 ----------------------------------------------------------------------
 ### Setting up Git for GitHub:
 ```
