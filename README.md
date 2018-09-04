@@ -1,14 +1,12 @@
 # Mischung
 Telegram bot for testing anything
 
-Use ./[request.sh](https://github.com/Artyom-Barsov/Mischung/blob/master/request.sh) with [Telegram Bot API](https://core.telegram.org/bots/api#available-methods) methods in URL query string format as arguments to send request and get response from <api.telegram.org> of the bot.
-For example:
 ```
-curl "https://api.telegram.org/bot688343184:AAGnRwbHccoACNsrWr3N75_wnSesvp4t5dA/getMe"
+./[request.sh](https://github.com/Artyom-Barsov/Mischung/blob/master/request.sh) [method](https://core.telegram.org/bots/api#available-methods)
 ```
-or just:
+or
 ```
-./request.sh getMe
+curl "https://api.telegram.org/bot688343184:AAGnRwbHccoACNsrWr3N75_wnSesvp4t5dA/
 ```
 ----------------------------------------------------------------------
 ### Setting up Git for GitHub:
