@@ -9,7 +9,10 @@ or
 
 ```
 curl "https://api.telegram.org/bot688343184:AAGnRwbHccoACNsrWr3N75_wnSesvp4t5dA/
-``` [*method*](https://core.telegram.org/bots/api#available-methods) ```| python -m json.tool
+```
+[*method*](https://core.telegram.org/bots/api#available-methods)
+```
+| python -m json.tool
 ```
 
 ----------------------------------------------------------------------
