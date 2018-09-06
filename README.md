@@ -3,7 +3,7 @@ Telegram bot for testing anything
 
 ----------------------------------------------------------------------
 ### To use without [bot.py](https://github.com/Artyom-Barsov/Mischung/blob/master/bot.py):
-```./```[```request.sh```](https://github.com/Artyom-Barsov/Mischung/blob/master/request.sh) [*method*](https://core.telegram.org/bots/api#available-methods)
+`./`[`request.sh`](https://github.com/Artyom-Barsov/Mischung/blob/master/request.sh) [*method*](https://core.telegram.org/bots/api#available-methods)
 
 or
 
