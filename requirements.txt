@@ -1,3 +1,5 @@
 pyTelegramBotAPI
 flask
 logging
+ujson
+json
