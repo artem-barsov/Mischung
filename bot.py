@@ -13,8 +13,8 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
-    json_of_message = json.dumps(message)
-    bot.reply_to(message, json_of_message)
+    # json_of_message = json.dumps(message)
+    bot.reply_to(message, message.chat.username)
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
