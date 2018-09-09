@@ -13,8 +13,9 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
-    # json_of_message = json.dumps(message)
-    bot.reply_to(message, message.text)
+    tmpDict = message.__dict__
+    json_of_message = json.dumps(tmpDict)
+    bot.reply_to(message, json_of_message)
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
@@ -23,8 +24,7 @@ if "HEROKU" in list(os.environ.keys()):
     server = Flask(__name__)
     @server.route("/bot", methods=['POST'])
     def getMessage():
-        new_update = [telebot.types.Update.de_json(request.stream.read().decode("utf-8"))]
-        bot.process_new_updates(new_update)
+        bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
         return "!", 200
     @server.route("/")
     def webhook():
