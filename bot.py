@@ -23,7 +23,8 @@ if "HEROKU" in list(os.environ.keys()):
     server = Flask(__name__)
     @server.route("/bot", methods=['POST'])
     def getMessage():
-        bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+        new_update = [telebot.types.Update.de_json(request.stream.read().decode("utf-8"))]
+        bot.process_new_updates(new_update)
         return "!", 200
     @server.route("/")
     def webhook():
