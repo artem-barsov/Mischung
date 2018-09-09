@@ -14,7 +14,7 @@ bot = telebot.TeleBot(token)
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
     # json_of_message = json.dumps(message)
-    bot.reply_to(message, [telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    bot.reply_to(message, message.text)
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
