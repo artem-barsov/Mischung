@@ -3,10 +3,10 @@ import telebot
 import logging
 from flask import Flask, request
 
-try:
-    import ujson as json
-except ImportError:
-    import json
+# try:
+#     import ujson as json
+# except ImportError:
+import json
 
 token = "688343184:AAGnRwbHccoACNsrWr3N75_wnSesvp4t5dA"
 bot = telebot.TeleBot(token)
