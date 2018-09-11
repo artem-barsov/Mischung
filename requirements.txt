@@ -2,3 +2,5 @@ pyTelegramBotAPI
 flask
 logging
 json
+psycopg2
+sys
