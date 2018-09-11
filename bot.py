@@ -15,7 +15,7 @@ class MyEncoder(JSONEncoder):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
-    bot.reply_to(message, JSONEncoder().encode(message))
+    bot.reply_to(message, MyEncoder().encode(message))
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
