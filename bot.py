@@ -18,21 +18,21 @@ class MyEncoder(JSONEncoder):
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
     json_of_message = MyEncoder().encode(message)
-    try:
-        con = psycopg2.connect("dbname='Updates'")
-        cur = con.cursor()
-        cur.execute("INSERT INTO Updates(messages) VALUES (%s)", json_of_message)
-        con.commit()
-
-    except:
-        if con:
-            con.rollback()
-        # print 'Error %s' % e
-        # sys.exit(1)
-
-    finally:
-        if con:
-            con.close()
+    # try:
+    #     con = psycopg2.connect("dbname='Updates'")
+    #     cur = con.cursor()
+    #     cur.execute("INSERT INTO Updates(messages) VALUES (%s)", json_of_message)
+    #     con.commit()
+    #
+    # except:
+    #     if con:
+    #         con.rollback()
+    #     # print 'Error %s' % e
+    #     # sys.exit(1)
+    #
+    # finally:
+    #     if con:
+    #         con.close()
     bot.reply_to(message, json_of_message)
 
 if "HEROKU" in list(os.environ.keys()):
