@@ -25,8 +25,12 @@ git pull
 ### Setting up for Heroku:
 - Instal heroku
 - Login on Heroku
-- In Pipfile version:
+- In Pipfile apps(packages) with dependencies and their versions:
+For `pipenv instal` *package*:
 ```
+[packages]
+psycopg2 = "*"
+
 [requires]
 python_version = "3.5"
 ```
