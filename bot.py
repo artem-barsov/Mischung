@@ -24,7 +24,7 @@ def echo_message(message):
         cur.execute("INSERT INTO Updates(messages) VALUES (%s)", json_of_message)
         con.commit()
 
-    except psycopg2.DatabaseError, e:
+    except psycopg2.DatabaseError as e:
         if con:
             con.rollback()
         print 'Error %s' % e
