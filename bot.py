@@ -27,7 +27,7 @@ def echo_message(message):
     except psycopg2.DatabaseError as e:
         if con:
             con.rollback()
-        print 'Error %s' % e
+        print('Error %s' % e)
         sys.exit(1)
 
     finally:
