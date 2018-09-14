@@ -17,6 +17,7 @@ class MyEncoder(JSONEncoder):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
+    global con
     json_of_message = MyEncoder().encode(message)
     try:
         con = psycopg2.connect("dbname='Updates'")
