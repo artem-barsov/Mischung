@@ -21,6 +21,7 @@ def echo_message(message):
     # tmpDict = message.__dict__
     # json_of_message = json.dumps(tmpDict)
     bot.reply_to(message, MyEncoder().encode(message))
+    bot.reply_to(message, message.forward_date)
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
