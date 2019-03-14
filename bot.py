@@ -2,7 +2,7 @@ import os
 import telebot
 import logging
 from flask import Flask, request
-
+from datetime import datetime
 # try:
 #     import ujson as json
 # except ImportError:
@@ -22,6 +22,7 @@ def echo_message(message):
     # json_of_message = json.dumps(tmpDict)
     bot.reply_to(message, MyEncoder().encode(message))
     bot.reply_to(message, message.forward_date)
+    bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date).strftime('%Y-%m-%d %H:%M:%S'))
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
