@@ -1,12 +1,10 @@
 import os
 import telebot
 import logging
+import json
 from flask import Flask, request
 from datetime import datetime
-# try:
-#     import ujson as json
-# except ImportError:
-import json
+from telebot import types
 
 token = "688343184:AAGnRwbHccoACNsrWr3N75_wnSesvp4t5dA"
 bot = telebot.TeleBot(token)
@@ -16,17 +14,14 @@ class MyEncoder(JSONEncoder):
     def default(self, o):
         return o.__dict__
 
-@bot.message_handler(func=lambda message: True, content_types=['text', 'photo', 'audio', 'video', 'document', 'location', 'contact', 'sticker', 'game', 'video_note', 'voice', 'venue', 'new_chat_member', 'new_chat_members', 'left_chat_member', 'new_chat_title', 'new_chat_photo', 'delete_chat_photo', 'group_chat_created', 'supergroup_chat_created', 'channel_chat_created', 'migrate_to_chat_id', 'migrate_from_chat_id', 'pinned_message', 'invoice', 'successful_payment', 'connected_website'])
+@bot.message_handler(func=lambda message: True, content_types=['all'])
 def echo_message(message):
-    # tmpDict = message.__dict__
-    # json_of_message = json.dumps(tmpDict)
     bot.reply_to(message, MyEncoder().encode(message))
     bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date+18000).strftime('%H:%M:%S %d-%m-%Y'))
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
     telebot.logger.setLevel(logging.INFO)
-
     server = Flask(__name__)
     @server.route("/bot", methods=['POST'])
     def getMessage():
