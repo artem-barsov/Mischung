@@ -16,12 +16,12 @@ class MyEncoder(JSONEncoder):
     def default(self, o):
         return o.__dict__
 
-@bot.message_handler(func=lambda message: True, content_types=['text'])
+@bot.message_handler(func=lambda message: True, content_types=['text', 'audio', 'video', 'document', 'location', 'contact', 'sticker'])
 def echo_message(message):
     # tmpDict = message.__dict__
     # json_of_message = json.dumps(tmpDict)
     bot.reply_to(message, MyEncoder().encode(message))
-    bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date+18000).strftime('%Y-%m-%d %H:%M:%S'))
+    bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date+18000).strftime('%H:%M:%S %d-%m-%Y'))
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
