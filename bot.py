@@ -19,7 +19,7 @@ def echo_message(message):
     global showJSON
     markup = types.ReplyKeyboardMarkup()
     markup.row(showJSON)
-#    bot.send_message(message.chat.id, reply_markup=markup)
+    bot.send_message(message.chat.id, '', reply_markup=markup)
     if message.text == showJSON:
         if message.text == 'show json : off':
             showJSON = 'show json : on'
