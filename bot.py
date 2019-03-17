@@ -19,7 +19,7 @@ def echo_message(message):
     global showJSON
     markup = types.ReplyKeyboardMarkup()
     markup.row(showJSON)
-    bot.send_message(message.chat.id, '', reply_markup=markup)
+#    bot.send_message(message.chat.id, '', reply_markup=markup)
     if message.text == showJSON:
         if message.text == 'show json : off':
             showJSON = 'show json : on'
@@ -27,7 +27,7 @@ def echo_message(message):
             showJSON = 'show json : off'
     elif showJSON == 'show json : on':
         bot.reply_to(message, MyEncoder().encode(message))
-    bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date+18000).strftime('%H:%M:%S %d-%m-%Y'))
+    bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date+18000).strftime('%H:%M:%S %d-%m-%Y'), reply_markup=markup)
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
