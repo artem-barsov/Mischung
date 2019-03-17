@@ -13,19 +13,23 @@ from json import JSONEncoder
 class MyEncoder(JSONEncoder):
     def default(self, o):
         return o.__dict__
-showJSON = 'show json : off'
+showJSON = True
+
+@bot.message_handler(func=lambda message: message.text[0:9] == 'show JSON')
+def show_json_mode(message):
+    global showJSON
+    if message.text[12:] == 'off':
+        showJSON = False
+    elif message.text[12:] == 'on':
+        showJSON = True
+
 @bot.message_handler(func=lambda message: True, content_types=['text', 'photo', 'audio', 'video', 'document', 'location', 'contact', 'sticker', 'game', 'video_note', 'voice', 'venue', 'new_chat_member', 'new_chat_members', 'left_chat_member', 'new_chat_title', 'new_chat_photo', 'delete_chat_photo', 'group_chat_created', 'supergroup_chat_created', 'channel_chat_created', 'migrate_to_chat_id', 'migrate_from_chat_id', 'pinned_message', 'invoice', 'successful_payment', 'connected_website'])
 def echo_message(message):
     global showJSON
     markup = types.ReplyKeyboardMarkup()
-    markup.row(showJSON)
+    markup.row('show JSON : on', 'show JSON : off')
 #    bot.send_message(message.chat.id, '', reply_markup=markup)
-    if message.text == showJSON:
-        if message.text == 'show json : off':
-            showJSON = 'show json : on'
-        else:
-            showJSON = 'show json : off'
-    elif showJSON == 'show json : on':
+    if showJSON:
         bot.reply_to(message, MyEncoder().encode(message))
     bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date+18000).strftime('%H:%M:%S %d-%m-%Y'), reply_markup=markup)
 
