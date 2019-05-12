@@ -15,7 +15,7 @@ class MyEncoder(JSONEncoder):
         return o.__dict__
 showJSON = False
 
-@bot.message_handler(content_types=['text'], func=lambda message: message.text[0:9] == 'show JSON')
+@bot.message_handler(content_types=['text'], func=lambda message: hasattr(message, 'text') and message.text != None and message.text[0:9] == 'show JSON')
 def show_json_mode(message):
     global showJSON
     if message.text[12:] == 'off':
