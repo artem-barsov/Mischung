@@ -13,9 +13,9 @@ from json import JSONEncoder
 class MyEncoder(JSONEncoder):
     def default(self, o):
         return o.__dict__
-showJSON = True
+showJSON = False
 
-@bot.message_handler(func=lambda message: message.text[0:9] == 'show JSON')
+@bot.message_handler(content_types=['text'], func=lambda message: message.text[0:9] == 'show JSON')
 def show_json_mode(message):
     global showJSON
     if message.text[12:] == 'off':
