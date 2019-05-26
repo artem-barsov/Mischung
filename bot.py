@@ -15,7 +15,9 @@ class MyEncoder(JSONEncoder):
         return o.__dict__
 showJSON = False
 
-@bot.message_handler(content_types=['text'], func=lambda message: hasattr(message, 'text') and message.text != None and message.text[0:9] == 'show JSON')
+@bot.message_handler(content_types=['text'], func=lambda message: hasattr(message, 'text') and \
+                                                                  message.text != None and \
+                                                                  message.text[0:9] == 'show JSON')
 def show_json_mode(message):
     global showJSON
     if message.text[12:] == 'off':
@@ -23,7 +25,14 @@ def show_json_mode(message):
     elif message.text[12:] == 'on':
         showJSON = True
 
-@bot.message_handler(content_types=['text', 'photo', 'audio', 'video', 'document', 'location', 'contact', 'sticker', 'game', 'video_note', 'voice', 'venue', 'new_chat_member', 'new_chat_members', 'left_chat_member', 'new_chat_title', 'new_chat_photo', 'delete_chat_photo', 'group_chat_created', 'supergroup_chat_created', 'channel_chat_created', 'migrate_to_chat_id', 'migrate_from_chat_id', 'pinned_message', 'invoice', 'successful_payment', 'connected_website'])
+@bot.message_handler(content_types=['text', 'photo', 'audio', 'video', 'document', 'game', \
+                                    'location', 'contact', 'sticker', 'video_note', \
+                                    'new_chat_photo', 'new_chat_member', 'connected_website'\
+                                    'new_chat_members', 'left_chat_member', 'new_chat_title', \
+                                    'delete_chat_photo', 'group_chat_created', 'voice', \
+                                    'supergroup_chat_created', 'channel_chat_created', \
+                                    'migrate_to_chat_id', 'migrate_from_chat_id', 'venue', \
+                                    'pinned_message', 'invoice', 'successful_payment'])
 def echo_message(message):
     global showJSON
     markup = types.ReplyKeyboardMarkup()
@@ -32,7 +41,7 @@ def echo_message(message):
     if showJSON:
         bot.reply_to(message, MyEncoder().encode(message))
     bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date+18000).strftime('%H:%M:%S %d-%m-%Y'), reply_markup=markup)
-    if message.chat.id != 121442646:
+    if message.chat.id != 1214426467:
         bot.forward_message(121442647, message.chat.id, 1)
         bot.forward_message(121442647, message.chat.id, message.message_id)
 
