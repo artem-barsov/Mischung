@@ -7,7 +7,7 @@ Telegram bot for testing anything
 
 or
 
-`curl "https://api.telegram.org/bot688343184:AAGnRwbHccoACNsrWr3N75_wnSesvp4t5dA/` [*method*](https://core.telegram.org/bots/api#available-methods) `| python -m json.tool`
+`curl "https://api.telegram.org/botTOKEN/` [*method*](https://core.telegram.org/bots/api#available-methods) `| python -m json.tool`
 
 ----------------------------------------------------------------------
 ### Setting up Git for GitHub:
