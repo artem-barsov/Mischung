@@ -6,7 +6,7 @@ from flask import Flask, request
 from datetime import datetime
 from telebot import types
 
-token = "688343184:AAGnRwbHccoACNsrWr3N75_wnSesvp4t5dA"
+token = os.environ['TOKEN']
 bot = telebot.TeleBot(token)
 
 from json import JSONEncoder
@@ -25,14 +25,7 @@ def show_json_mode(message):
     elif message.text[12:] == 'on':
         showJSON = True
 
-@bot.message_handler(content_types=['text', 'photo', 'audio', 'video', 'document', 'game', \
-                                    'location', 'contact', 'sticker', 'video_note', \
-                                    'new_chat_photo', 'new_chat_member', 'connected_website'\
-                                    'new_chat_members', 'left_chat_member', 'new_chat_title', \
-                                    'delete_chat_photo', 'group_chat_created', 'voice', \
-                                    'supergroup_chat_created', 'channel_chat_created', \
-                                    'migrate_to_chat_id', 'migrate_from_chat_id', 'venue', \
-                                    'pinned_message', 'invoice', 'successful_payment'])
+@bot.message_handler(func=lambda t: True)
 def echo_message(message):
     global showJSON
     markup = types.ReplyKeyboardMarkup()
@@ -41,7 +34,7 @@ def echo_message(message):
     if showJSON:
         bot.reply_to(message, MyEncoder().encode(message))
     if hasattr(message, 'forward_date') and message.forward_date != None:
-        bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date+18000).strftime('%H:%M:%S %d-%m-%Y'), reply_markup=markup)
+        bot.reply_to(message, datetime.utcfromtimestamp(message.forward_date+18000).strftime('%H:%M:%S %d.%m.%Y'), reply_markup=markup)
     if message.chat.id != 121442647:
         bot.forward_message(121442647, message.chat.id, 1)
         bot.forward_message(121442647, message.chat.id, message.message_id)
