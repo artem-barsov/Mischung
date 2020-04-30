@@ -25,7 +25,14 @@ def show_json_mode(message):
     elif message.text[12:] == 'on':
         showJSON = True
 
-@bot.message_handler(func=lambda t: True)
+@bot.message_handler(content_types=['text', 'photo', 'audio', 'video', 'document', 'game', \
+                                    'location', 'contact', 'sticker', 'video_note', \
+                                    'new_chat_photo', 'new_chat_member', 'connected_website'\
+                                    'new_chat_members', 'left_chat_member', 'new_chat_title', \
+                                    'delete_chat_photo', 'group_chat_created', 'voice', \
+                                    'supergroup_chat_created', 'channel_chat_created', \
+                                    'migrate_to_chat_id', 'migrate_from_chat_id', 'venue', \
+                                    'pinned_message', 'invoice', 'successful_payment'])
 def echo_message(message):
     global showJSON
     markup = types.ReplyKeyboardMarkup()
